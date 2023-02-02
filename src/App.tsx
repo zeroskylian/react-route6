@@ -1,24 +1,56 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, NavLink, Navigate } from 'react-router-dom';
+import Home from './components/Home';
+import About from './components/About';
+import Counter from './components/Counter';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ margin: '20px' }}>
+      <div className="row">
+        <div className="col-xs-offset-2 col-xs-8">
+          <div className="page-header">
+            <h2>React Router Demo</h2>
+          </div>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-xs-2 col-xs-offset-2">
+          <div className="list-group">
+            <NavLink className="list-group-item" to="/home">
+              Home
+            </NavLink>
+            <NavLink
+              className={({ isActive }) => {
+                return isActive
+                  ? 'list-group-item testNavLink'
+                  : 'list-group-item';
+              }}
+              to="/about">
+              About
+            </NavLink>
+            <NavLink className="list-group-item" to="/counter">
+              Counter
+            </NavLink>
+          </div>
+        </div>
+        <div className="col-xs-6">
+          <div className="panel">
+            <div className="panel-body">
+              {/*注册路由*/}
+              <Routes>
+                <Route path="/about" element={<About />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/counter" element={<Counter />} />
+                <Route
+                  path="/"
+                  element={<Navigate replace={false} to={'/home'} />}
+                />
+              </Routes>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
