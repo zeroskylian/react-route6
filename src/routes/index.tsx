@@ -1,10 +1,14 @@
-import Home from '../components/Home';
+import Home from '../pages/Home';
 import React from 'react';
 import { Navigate, RouteObject } from 'react-router-dom';
-import About from '../components/About';
-import Counter from '../components/Counter';
-import Message from '../components/About/Message';
-import User from '../components/About/User';
+import About from '../pages/About';
+import Counter from '../pages/Counter';
+import Message from '../pages/Home/Message';
+import User from '../pages/Home/User';
+import MessageDetail, {
+  MessageDetailUseSearch,
+  MessageDetailUseState,
+} from '../pages/Home/MessageDetail';
 
 const routes: RouteObject[] = [
   {
@@ -18,6 +22,20 @@ const routes: RouteObject[] = [
       {
         path: 'message',
         element: <Message />,
+        children: [
+          {
+            path: 'detailParams/:id/:content',
+            element: <MessageDetail />,
+          },
+          {
+            path: 'detailSearch',
+            element: <MessageDetailUseSearch />,
+          },
+          {
+            path: 'detailState',
+            element: <MessageDetailUseState />,
+          },
+        ],
       },
       {
         path: 'user',

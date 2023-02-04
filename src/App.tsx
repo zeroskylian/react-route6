@@ -1,8 +1,8 @@
 import React from 'react';
 import { Routes, Route, NavLink, Navigate, useRoutes } from 'react-router-dom';
-import Home from './components/Home';
-import About from './components/About';
-import Counter from './components/Counter';
+import Home from './pages/Home';
+import About from './pages/About';
+import Counter from './pages/Counter';
 import routes from './routes';
 
 function App() {
