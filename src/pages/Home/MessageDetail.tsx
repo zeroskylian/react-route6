@@ -4,12 +4,16 @@ import {
   useParams,
   useSearchParams,
   useMatch,
+  useNavigationType
 } from 'react-router-dom';
 
+type Message = { id: string; content: string };
+
 export default function MessageDetail() {
-  const params = useParams<{ id: string; content: string }>();
+  const params = useParams<Message>();
   const match = useMatch('/home/message/detailParams/:id/:content');
   console.log(match);
+  console.log(useNavigationType())
   return (
     <div>
       <h4>params</h4>
@@ -43,9 +47,8 @@ export function MessageDetailUseSearch() {
 }
 
 export function MessageDetailUseState() {
-  const {
-    state: { id, content },
-  } = useLocation();
+  const state = useLocation().state as Message;
+  const { id, content } = state;
   return (
     <div>
       <h4>state</h4>

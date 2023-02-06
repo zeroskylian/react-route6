@@ -1,20 +1,23 @@
 import React from 'react';
-import { Routes, Route, NavLink, Navigate, useRoutes } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  NavLink,
+  Navigate,
+  useRoutes,
+  useInRouterContext,
+} from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import Counter from './pages/Counter';
 import routes from './routes';
+import Headers from './components/Headers';
 
 function App() {
+  console.log('App', useInRouterContext()); // true
   return (
     <div style={{ margin: '20px' }}>
-      <div className="row">
-        <div className="col-xs-offset-2 col-xs-8">
-          <div className="page-header">
-            <h2>React Router Demo</h2>
-          </div>
-        </div>
-      </div>
+      <Headers />
       <div className="row">
         <div className="col-xs-2 col-xs-offset-2">
           <div className="list-group">
@@ -58,19 +61,14 @@ function App() {
 
 function AppRouter() {
   const element = useRoutes(routes);
+  console.log('App', useInRouterContext()); // true
   return (
     <div style={{ margin: '20px' }}>
-      <div className="row">
-        <div className="col-xs-offset-2 col-xs-8">
-          <div className="page-header">
-            <h2>React Router Demo</h2>
-          </div>
-        </div>
-      </div>
+      <Headers />
       <div className="row">
         <div className="col-xs-2 col-xs-offset-2">
           <div className="list-group">
-            <NavLink className="list-group-item" to="/home">
+            <NavLink className="list-group-item" end to="/home">
               Home
             </NavLink>
             <NavLink
